@@ -3,10 +3,17 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left mt-2">
-                <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
+                <center><h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2></center>
             </div>
+            <nav class="navbar navbar-light bg-light">
+                <form method="get" action="{{ route('mahasiswa.index') }}" class="form-inline">
+                    <input id="search" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="search"
+                    value="{{ request('search') }}">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
             <div class="float-right my-2">
-                <a class="btn btnsuccess" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
+                <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
             </div>
         </div>
     </div>
@@ -36,8 +43,8 @@
         <td>{{ $Mahasiswa->No_Handphone }}</td>
     <td>
     <form action="{{ route('mahasiswa.destroy',$Mahasiswa->Nim) }}" method="POST">
-            <a class="btn btninfo" href="{{ route('mahasiswa.show',$Mahasiswa->Nim) }}">Show</a>
-            <a class="btn btnprimary" href="{{ route('mahasiswa.edit',$Mahasiswa->Nim) }}">Edit</a>
+            <a class="btn btn-info" href="{{ route('mahasiswa.show',$Mahasiswa->Nim) }}">Show</a>
+            <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$Mahasiswa->Nim) }}">Edit</a>
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-danger">Delete</button>
@@ -46,4 +53,5 @@
     </tr>
     @endforeach
  </table>
+{{ $mahasiswa->links() }}
 @endsection
